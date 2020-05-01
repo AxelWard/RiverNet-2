@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+
+
+{% block content %}
+
+   {% csrf_token %}
+    <h1> WATER QUALITY </h1>
+
+    {% if success %}
+    <!--{% for dict in formset.errors %}
+          {% for error in dict.values %}
+               <h3>{{error}}</h3>
+          {% endfor %}
+      {% endfor %}-->
+    <h2> {{success}} </h2>
+    {%endif%}
+
+
+
+ 
+{% endblock %}

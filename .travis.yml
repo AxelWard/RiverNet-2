@@ -1,0 +1,19 @@
+os:
+ - linux
+
+language:
+  - python
+
+python:
+  - 3.7
+
+install:
+  - pip install pytest
+  - pip install -r ./"Code Library"/venv/requirements.txt
+
+script:
+  - python ./"Code Library"/venv/main.py
+  - pytest ./test/testDjango.py
+
+notifications:
+  email: false

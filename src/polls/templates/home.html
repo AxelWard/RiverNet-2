@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+    {% block content %}
+
+        <h1> WATER QUALITY DATA </h1>
+        {% if success %}
+            <h2> {{success}} </h2>
+        {% endif %}
+        {% if formset %}
+          
+            <form action ='/water_quality/' method='post'>
+            {% csrf_token %}
+           
+                {% for fields in forms %}
+
+                    {{ fields.label_tag }} {{fields}} <br>
+
+                {% endfor %} 
+                {{formset.management_form}}
+                    {% for row in formset %}
+                        {% for values in row %}
+                                {{values.label_tag}} {{values}}
+                        {% endfor %}
+                        <br>
+                    {% endfor %}
+
+                {{formset.non_form_errors}}
+                <!--{% if formset.errors %}
+                    <p> All values are required except for notes. One or multiple are missing </p>
+                  
+                {% endif %} -->
+                {% if error %}
+                        <p> {{error}} </p>
+                {% endif %}
+                
+                <input type="submit" value="Save Data">
+            </form>
+        {% else %}
+        
+            <form action ='' method='post'>
+            {% csrf_token %}
+                
+                {% for fields in forms %}
+
+                {{ fields.label_tag }} {{fields}} <br>
+        
+                {% endfor %}
+
+            <input type="submit" value="Start Submitting Data">
+            </form>
+        {% endif %}
+        
+    {% endblock %}
